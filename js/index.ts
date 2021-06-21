@@ -22,16 +22,8 @@ interface Point{
 }
 class Line{
   startPoint:Point = {x:1, y:2}
-  endPoint:Point = 0;
+  // endPoint:Point = 0;
   startTed:boolean = false;
-  var setStart(){
-    
-  }
-
-}
-
-function renderLine(context:CanvasRenderingContext2D) : void{
-
 }
 
 const render = () => {
