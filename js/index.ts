@@ -5,39 +5,41 @@ const canvas: HTMLCanvasElement = document.getElementById("canvas") as HTMLCanva
 const width = canvas.width
 const height = canvas.height
 var context = canvas.getContext("2d")
-var x = 0, y = 0
-var speed = 0.01;
+var mouseX =0, mouseY=0;
+var canvasX = canvas.getBoundingClientRect().left, canvasY = canvas.getBoundingClientRect().top
 
-class Drop { 
-    private x: number
-    private y: number
-    private selfHeight: number
+var speed = 0.1;
+var dropsPerCount = 10;
 
-    constructor() {
-        this.x = Math.random() * width
-        this.y = Math.random() * height
-        this.selfHeight = Math.random() * 20 + 20
-    }
-    public draw(context: CanvasRenderingContext2D) {
-        context.beginPath()
-        context.moveTo(this.x, this.y)
-        context.lineTo(this.x, this.y + this.selfHeight)
-        context.stroke()
-    }
+canvas.addEventListener("mousemove", function(e:MouseEvent){
+  mouseX = e.clientX - canvasX
+  mouseY = e.clientY - canvasY
+})
+
+interface Point{
+  x:number
+  y:number
+}
+class Line{
+  startPoint:Point = {x:1, y:2}
+  endPoint:Point = 0;
+  startTed:boolean = false;
+  var setStart(){
+    
+  }
+
 }
 
+function renderLine(context:CanvasRenderingContext2D) : void{
 
-for (var i = 0; i <= 10; i++) {
-    var drop = new Drop()
-    drop.draw(context)
 }
 
-// const render = () => {
-//     for(var i =1; i<=10; i++){
-
-//     }
-//     requestAnimationFrame(render)
-// }
-
-// requestAnimationFrame(render)
-
+const render = () => {
+    context.clearRect(0,0,width, height)
+    context.fillStyle = "rgb(230,230,230)"
+    context.fillRect(0,0,width,height)
+    context.fillStyle = "black"
+    context.fillText(`x : ${mouseX}, y : ${mouseY}`, 5,20, 300)
+    requestAnimationFrame(render)
+}
+requestAnimationFrame(render)
